@@ -1,16 +1,24 @@
-# FITWCHAT - Automated Fitness Consultant
+# Fitness Plan Generator
 
-A terminal-based Python application designed to generate personalized training routines and nutritional guidelines based on user biometrics and fitness objectives[cite: 1].
+This is a simple Python program that helps you make a fitness plan. It asks for your name, age, weight, height, and goals, and then tells you how many calories to eat and what workout to do.
 
-## Features
+## What it does
 
-- **Biometric Processing:** Implements scientific formulas to calculate Basal Metabolic Rate (BMR) and total daily energy expenditure[cite: 1].
-- **Adaptive Programming:** Dynamically generates 1-to-6-day workout splits and maps macro requirements to user goals[cite: 1].
-- **Input Validation:** Features secure terminal loops to prevent runtime crashes from invalid data entries[cite: 1].
-- **Conditional Logic:** Delivers targeted coaching directives tailored to specific starting body compositions[cite: 1].
+- It asks for your information and makes sure you type numbers correctly.
+- It calculates your BMR using your weight, height, and age.
+- It figures out your daily calories and protein based on your goal (like losing fat or building muscle).
+- It gives you a workout routine for 1 to 6 days a week.
 
-## Technical Skills Demonstrated
+## How to use it
 
-- Clean coding practices and modular design (Separation of Concerns)[cite: 1].
-- Exception handling and data validation techniques[cite: 1].
-- Implementation of mathematical models in Python logic[cite: 1].
+1. Run the script in your terminal using Python: `python FITWPY-Gym Trainer.py`
+2. Answer the questions on the screen.
+3. Read your custom fitness plan.
+
+## Concepts used
+
+- Variables and input/output
+- Functions with arguments and return values
+- While loops and If/Else statements
+- Basic math equations
+- Try/Except blocks to stop the program from crashing
