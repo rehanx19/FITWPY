@@ -1,24 +1,50 @@
-# Fitness Plan Generator
+Fitness Plan Generator
 
-This is a simple Python program that helps you make a fitness plan. It asks for your name, age, weight, height, and goals, and then tells you how many calories to eat and what workout to do.
+A Python-based command-line application that generates personalized fitness recommendations based on user input such as age, weight, height, and fitness goals.
 
-## What it does
+The program calculates daily calorie needs and protein intake and suggests a basic workout structure depending on training frequency.
 
-- It asks for your information and makes sure you type numbers correctly.
-- It calculates your BMR using your weight, height, and age.
-- It figures out your daily calories and protein based on your goal (like losing fat or building muscle).
-- It gives you a workout routine for 1 to 6 days a week.
+Purpose
 
-## How to use it
+This project was built to strengthen my understanding of:
 
-1. Run the script in your terminal using Python: `python FITWPY-Gym Trainer.py`
-2. Answer the questions on the screen.
-3. Read your custom fitness plan.
+Python functions and modular programming
+Input validation and error handling
+Mathematical calculations in programming
+Conditional logic for decision-making systems
+Basic algorithm design for personalized outputs
+Features
+Collects user data (age, weight, height, name, goal)
+Validates numeric input to prevent incorrect entries
+Calculates Basal Metabolic Rate (BMR)
+Estimates daily calorie requirements based on fitness goal:
+Fat loss
+Maintenance
+Muscle gain
+Estimates protein intake based on body weight
+Generates a basic workout split (1–6 days per week)
+Calculation Method
 
-## Concepts used
+The program uses the Mifflin-St Jeor Equation to estimate BMR:
 
-- Variables and input/output
-- Functions with arguments and return values
-- While loops and If/Else statements
-- Basic math equations
-- Try/Except blocks to stop the program from crashing
+BMR is calculated using weight, height, and age
+Daily calorie needs are adjusted based on the selected goal
+Protein intake is estimated using standard fitness guidelines
+How to Run
+
+Run the script using Python:
+
+python FITWPY-Gym Trainer.py
+
+Follow the prompts in the terminal to generate a personalized fitness plan.
+
+Concepts Used
+Variables and user input/output
+Functions with parameters and return values
+Conditional statements (if/else logic)
+Loops (while)
+Exception handling (try/except)
+Basic mathematical modeling
+Notes
+This is a beginner-level project focused on applying Python fundamentals to a real-world use case
+The program is rule-based and does not use machine learning
