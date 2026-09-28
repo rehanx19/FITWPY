@@ -1,33 +1,53 @@
+# FITWCHAT - fitness and calorie calculator
+# Made by Rehan
+# Run it with: python fitwchat.py
+
 print("                                                              FITWCHAT")
+
+
+# ==================== INPUT HELPERS ====================
+
+# ask for a number above 0
 def ask_number(question):
     while True:
         try:
             number = float(input(question))
+
             if number > 0:
                 return number
+
             print("Please enter a number above 0.")
+
         except ValueError:
             print("Please enter a valid number.")
 
 
+# ask the user to pick from a list
 def ask_choice(question, choices):
     print(question)
+
     for i in range(len(choices)):
         print(str(i + 1) + ". " + choices[i])
 
     while True:
         answer = input("Choose a number or type your answer: ").lower().strip()
+
         if answer.isdigit():
             answer = int(answer)
+
             if 1 <= answer <= len(choices):
                 return choices[answer - 1]
         else:
             for choice in choices:
                 if answer == choice:
                     return choice
+
         print("Please choose a valid number.")
 
 
+# ==================== CALCULATIONS ====================
+
+# BMR with the Mifflin-St Jeor formula
 def calculate_bmr(sex, weight, height, age):
     if sex == "male":
         return (10 * weight) + (6.25 * height) - (5 * age) + 5
@@ -35,6 +55,7 @@ def calculate_bmr(sex, weight, height, age):
         return (10 * weight) + (6.25 * height) - (5 * age) - 161
 
 
+# more training days = higher multiplier
 def get_activity_multiplier(days):
     if days <= 2:
         return 1.35
@@ -44,6 +65,7 @@ def get_activity_multiplier(days):
         return 1.65
 
 
+# daily calories for the chosen goal
 def get_calorie_goal(maintenance, goal):
     if goal == "lean bulk":
         return round(maintenance + 250), "bulk"
@@ -57,6 +79,7 @@ def get_calorie_goal(maintenance, goal):
         return round(maintenance), "maintain"
 
 
+# daily protein in grams
 def get_protein_goal(weight, goal_type):
     if goal_type == "cut":
         return round(weight * 2.2)
@@ -66,6 +89,9 @@ def get_protein_goal(weight, goal_type):
         return round(weight * 2.0)
 
 
+# ==================== WORKOUT PLAN ====================
+
+# pick a split for the number of days, plus a cardio tip
 def get_workout_plan(days, goal, physique):
     if days == 1:
         split = [
@@ -118,11 +144,15 @@ def get_workout_plan(days, goal, physique):
     return split, cardio
 
 
+# ==================== PRINT THE PLAN ====================
+
+# show everything in one clean block
 def print_plan(name, sex, age, height, weight, physique, days, goal, calories, protein, goal_type, workout_split, cardio):
     print("\n" + "=" * 45)
     print("YOUR FITNESS PLAN")
     print("=" * 45)
 
+    # profile
     print("\nProfile:")
     print("Name:", name)
     print("Sex:", sex)
@@ -133,6 +163,7 @@ def print_plan(name, sex, age, height, weight, physique, days, goal, calories, p
     print("Goal:", goal)
     print("Training days:", days, "days per week")
 
+    # nutrition
     print("\nNutrition:")
     print("Calories per day:", calories, "calories")
     print("Goal type:", goal_type)
@@ -140,6 +171,7 @@ def print_plan(name, sex, age, height, weight, physique, days, goal, calories, p
     print("Simple eating rule: hit your calories and protein every day.")
     print("Drink water, eat mostly normal whole foods, and do not skip protein.")
 
+    # workout
     print("\nWorkout:")
     for day in workout_split:
         print("-", day)
@@ -151,6 +183,7 @@ def print_plan(name, sex, age, height, weight, physique, days, goal, calories, p
     print("- When 12 reps gets easy, increase the weight next time.")
     print("-", cardio)
 
+    # tips that depend on the physique
     print("\nExtra instructions:")
     if physique == "skinny":
         print("- Eat your full calories. Do not be scared of gaining a little weight.")
@@ -164,6 +197,7 @@ def print_plan(name, sex, age, height, weight, physique, days, goal, calories, p
     else:
         print("- Keep training hard and track your progress weekly.")
 
+    # progress
     print("\nCheck progress:")
     print("- Weigh yourself 3 times per week and use the average.")
     print("- If weight is not changing after 2 weeks, adjust calories by 150-200.")
@@ -171,6 +205,9 @@ def print_plan(name, sex, age, height, weight, physique, days, goal, calories, p
     print("=" * 45)
 
 
+# ==================== MAIN PROGRAM ====================
+
+# questions
 name = input("What is your name? ")
 sex = ask_choice("What is your sex?", ["male", "female"])
 age = ask_number("How old are you? ")
@@ -193,10 +230,14 @@ goal = ask_choice(
     ["lean bulk", "fat loss / cut", "athletic and toned", "muscle and strength", "maintain"]
 )
 
+
+# calculations
 bmr = calculate_bmr(sex, weight, height, age)
 maintenance = bmr * get_activity_multiplier(days)
 calories, goal_type = get_calorie_goal(maintenance, goal)
 protein = get_protein_goal(weight, goal_type)
 workout_split, cardio = get_workout_plan(days, goal, physique)
 
+
+# show the result
 print_plan(name, sex, age, height, weight, physique, days, goal, calories, protein, goal_type, workout_split, cardio)
